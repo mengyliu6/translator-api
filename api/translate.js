@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
   const salt = Date.now();
   const curtime = Math.floor(Date.now() / 1000);
-  appKey + truncate(q) + salt + curtime + appSecret;
+  const signStr = appKey + truncate(q) + salt + curtime + appSecret;
   const sign = crypto.createHash("sha256").update(signStr).digest("hex");
 
   const params = new URLSearchParams({
