@@ -2,7 +2,7 @@
 import fetch from "node-fetch";
 import crypto from "crypto";
 
-const appKey = process.env.YOUDAO_APP_KEY;
+const appKey = process.env.YOUDAO_APP_KEY.str.slice(3);
 const appSecret = process.env.YOUDAO_APP_SECRET;
 
 function truncate(q) {
