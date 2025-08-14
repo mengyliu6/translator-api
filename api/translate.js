@@ -2,7 +2,7 @@
 import fetch from "node-fetch";
 import crypto from "crypto";
 
-const appKey = process.env.YOUDAO_APP_KEY.str.slice(3);
+const appKey = process.env.YOUDAO_APP_KEY;
 const appSecret = process.env.YOUDAO_APP_SECRET;
 
 function truncate(q) {
@@ -37,7 +37,8 @@ export default async function handler(req, res) {
 
   const salt = Date.now();
   const curtime = Math.floor(Date.now() / 1000);
-  const signStr = appKey + truncate(q) + salt + curtime + appSecret;
+  const signStr =
+    appKey.str.slice(3) + truncate(q) + salt + curtime + appSecret;
   const sign = crypto.createHash("sha256").update(signStr).digest("hex");
 
   const params = new URLSearchParams({
