@@ -23,7 +23,6 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  console.log(req.body);
   // ✅ 解析 JSON body
   let body = {};
   try {
@@ -37,8 +36,7 @@ export default async function handler(req, res) {
 
   const salt = Date.now();
   const curtime = Math.floor(Date.now() / 1000);
-  const signStr =
-    appKey.str.slice(3) + truncate(q) + salt + curtime + appSecret;
+  const signStr = appKey.slice(3) + truncate(q) + salt + curtime + appSecret;
   const sign = crypto.createHash("sha256").update(signStr).digest("hex");
 
   const params = new URLSearchParams({
