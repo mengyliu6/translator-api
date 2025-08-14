@@ -4,7 +4,7 @@ import crypto from "crypto";
 
 const appKey = process.env.YOUDAO_APP_KEY;
 const appSecret = process.env.YOUDAO_APP_SECRET;
-
+console.log(appKey, appSecret);
 function truncate(q) {
   const len = q.length;
   if (len <= 20) return q;
